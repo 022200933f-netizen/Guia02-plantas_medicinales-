@@ -1,20 +1,18 @@
-//import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:guia02/screens/home_screen.dart'; //Material app
+import 'package:guia02/screens/home_screen.dart';
+import 'package:guia02/screens/widgets_examples.dart';
 
-void main() => runApp(const MyApp()); //primera llamada de la app
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  //statelesswidget "clase dinamica"
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //hacer wrap del container
     return const MaterialApp(
-      debugShowCheckedModeBanner: false, //widget constante
-      title: 'Libro de las Plantas',
-      home: PlantsBook(), // MaterialApp
+      debugShowCheckedModeBanner: false,
+      title: 'Libro de Plantas',
+      home: PlantsBook(),
     );
   }
 }
@@ -25,44 +23,28 @@ class PlantsBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 2, // ahora hay 2 pestañas
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.amber.shade300,
-          title: const Text(
-            'Medicina Natural',
-            style: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
-          ),
+          backgroundColor: Colors.green.shade300,
+          title: const Text('Medicina Natural'),
           bottom: const TabBar(
-            indicatorColor: Colors.blue,
+            indicatorColor: Colors.white,
             labelColor: Colors.white,
-            unselectedLabelColor: Colors.white,
+            unselectedLabelColor: Colors.black,
             tabs: [
-              Tab(
-                icon: Icon(Icons.home),
-                text: 'Inicio',
-              ),
-              Tab(
-                icon: Icon(Icons.question_mark),
-                text: 'Preguntas Frecuentes',
-              ),
-              Tab(
-                icon: Icon(Icons.people),
-                text: 'Personas',
-              ),
-              Tab(
-                icon: Icon(Icons.info),
-                text: 'Informacion',
-              ),
+              Tab(icon: Icon(Icons.nature), text: "Plantas"),
+              Tab(icon: Icon(Icons.widgets), text: "Widgets"),
             ],
           ),
-        ), // AppBar
+        ),
         body: const TabBarView(
           children: [
-            HomeScreen(),
+            HomeScreen(),       // pantalla de plantas
+            WidgetsExamples(),  // pantalla de ejemplos
           ],
         ),
-      ), // Scaffold
-    ); // DefaultTabController
+      ),
+    );
   }
 }

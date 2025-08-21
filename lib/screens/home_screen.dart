@@ -8,16 +8,16 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          PlantsCard(context),
-          PlantsCard(context),
-          PlantsCard(context),
+          PlantsCard(context, 'asset/imagenes/manzanilla.webp', 'Menta', 'Planta Informacion'),
+          PlantsCard(context, 'asset/imagenes/muna.png', 'Manzanilla', 'Planta Informacion'),
+          PlantsCard(context, 'asset/imagenes/planta.webp', 'Eucalipto', 'Planta Informacion'),
         ],
       ),
     );
   }
 }
 
-Widget PlantsCard(BuildContext context) {
+Widget PlantsCard(BuildContext context, String imagePath, String nombre, String autor) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: SizedBox(
@@ -26,45 +26,34 @@ Widget PlantsCard(BuildContext context) {
       child: Card(
         child: Row(
           children: <Widget>[
-            SizedBox(
+            Container(
               height: 125,
               width: 100,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'asset/muna.jpg',
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
-            ), // Container con imagen
+            ),
             const SizedBox(width: 26),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
+              children: <Widget>[
                 Text(
-                  'Planta',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'Quicksand',
-                    color: Colors.brown,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ), // Título
-                SizedBox(height: 4),
+                  nombre,
+                  style: const TextStyle(
+                      fontSize: 18, fontFamily: 'Quicksand', color: Colors.brown, fontWeight: FontWeight.w800),
+                ),
+                const SizedBox(height: 4),
                 Text(
-                  'Informacion planta',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontFamily: 'Quicksand',
-                    color: Colors.orange,
-                  ),
-                ), // Subtítulo
+                  autor,
+                  style: const TextStyle(fontSize: 16, fontFamily: 'Quicksand', color: Colors.orange),
+                ),
               ],
             ),
           ],
-        ), // Row
-      ), // Card
-    ), // SizedBox
-  ); // Padding
+        ),
+      ),
+    ),
+  );
 }
